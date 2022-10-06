@@ -2,16 +2,16 @@ package com.bemo.train
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
-
-import com.bemo.train.Relations.StationWithStops
+import com.bemo.train.Entities.Station
+import com.bemo.train.Entities.Stops
+import com.bemo.train.Entities.Train
 
 @Dao    // data access object
 interface TrainDao {
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertTrain(train:Train)
+    suspend fun insertTrain(train: Train)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertStop(stops: Stops)
@@ -23,23 +23,22 @@ interface TrainDao {
 
 
     @Query("SELECT * FROM Train")
-    fun getAllTrains():List<Train>
+    fun getAllTrains():LiveData<List<Train>>
 
 
     @Query("SELECT * FROM Station")
     fun getAllStations():LiveData<List<Station>>
-    @Query("SELECT * FROM Station")
-    fun getAllStations2():List<Station>
 
 
-    @Query("SELECT * FROM Train WHERE number LIKE :train_number LIMIT 1")
-    suspend fun findByNumber(train_number:String ):Train
 
-    @Query("SELECT * FROM Station WHERE stationName LIKE :station LIMIT 1")
+    @Query("SELECT * FROM Train WHERE number LIKE :train_number ")
+     fun findByNumber(train_number:String ):LiveData<List<Train>>
+
+    @Query("SELECT * FROM Station WHERE stationName LIKE :station ")
      fun findStationByName(station:String ):LiveData<List<Station>>
 
     @Delete
-    suspend fun delete(train:Train)
+    suspend fun delete(train: Train)
 
     @Query("DELETE FROM Train")
     suspend fun deleteAll()

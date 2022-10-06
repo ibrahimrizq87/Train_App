@@ -4,13 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.bemo.train.Entities.Station
+import com.bemo.train.Entities.Stops
+import com.bemo.train.Entities.Train
 
 @Database(entities =
 [
     Train::class ,
     Stops::class ,
     Station::class
-], version = 1, exportSchema = true)
+], version = 1)
 abstract class AppDatabase :RoomDatabase(){
     abstract fun trainDao():TrainDao
 //     abstract val trainDao:TrainDao

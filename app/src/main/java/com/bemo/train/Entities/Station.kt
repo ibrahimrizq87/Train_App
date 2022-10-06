@@ -1,4 +1,4 @@
-package com.bemo.train
+package com.bemo.train.Entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

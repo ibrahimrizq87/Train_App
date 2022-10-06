@@ -8,17 +8,8 @@
     android:gravity="center"
     tools:context=".SearchByLocation"
     >
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
 
-        android:layout_height="wrap_content"
-        android:hint="type your station name"
-        android:gravity="center"
-        android:layout_margin="10dp"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:onClick="click2"
-        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stations_recyclerview"
         android:layout_margin="10dp"

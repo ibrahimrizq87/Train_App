@@ -13,11 +13,14 @@ class Home : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-finish()
+       finish()
 
     }
 
-    fun click(view: View) {
-        startActivity(Intent(this,SearchByLocation::class.java))
+
+    fun enterData(view: View) {
+        startActivity(Intent(this,TrainData::class.java))
     }
+    fun searchByStation(view: View) {startActivity(Intent(this,SearchByLocation::class.java))}
+    fun searchByNumber(view: View) {startActivity(Intent(this,SearchByNumber::class.java))}
 }

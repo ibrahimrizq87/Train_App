@@ -3,7 +3,6 @@ package com.bemo.train
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -11,21 +10,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bemo.medicalservices.adapters.StationAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.bemo.train.Entities.Station
 
 class SearchByLocation : AppCompatActivity(), SearchView.OnQueryTextListener{
     private lateinit var adapter: StationAdapter
     private lateinit var appDatabase: AppDatabase
     private lateinit var stationRecyclerView: RecyclerView
     private lateinit var stationList: ArrayList<Station>
-    lateinit var  stations: List<Station>
+   // lateinit var  stations: List<Station>
 
     private lateinit var mViewModel: ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-stations=ArrayList()
+
+       // stations=ArrayList()
         setContentView(R.layout.activity_search_by_location)
         appDatabase=AppDatabase.getInstance(this)
         stationRecyclerView = findViewById(R.id.stations_recyclerview)
@@ -35,26 +33,22 @@ stations=ArrayList()
         stationRecyclerView.layoutManager = LinearLayoutManager(this)
         stationRecyclerView.adapter = adapter
 
-       mViewModel=ViewModelProvider(this).get(ViewModel::class.java)
+        mViewModel=ViewModelProvider(this).get(ViewModel::class.java)
+        getStationsData()
 
 
-        //appDatabase.trainDao().deleteAll()
-       // appDatabase.trainDao().deleteAll2()
-      //  appDatabase.trainDao().deleteAll3()
-    //    getStationsData()
         adapter.setOnItemClickListener(object : StationAdapter.onItemClickListener{
             override fun onItemClick(pos: Int) {
-Toast.makeText(this@SearchByLocation,stations[pos].stationName,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@SearchByLocation,stationList[pos].stationName,Toast.LENGTH_SHORT).show()
             }
 
         })
 
     }
 
-     fun click2(view: View) {
-         getStationsData()
 
 
+/*
          val station88 = Station("assuit")
          val station2 = Station("minia")
          val station3 = Station("sohag")
@@ -86,9 +80,9 @@ Toast.makeText(this@SearchByLocation,stations[pos].stationName,Toast.LENGTH_SHOR
              appDatabase.trainDao().insertStop(stop)
 
 
-         }
 
-    }
+
+  */
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu,menu)
@@ -98,20 +92,7 @@ Toast.makeText(this@SearchByLocation,stations[pos].stationName,Toast.LENGTH_SHOR
         searchView?.setOnQueryTextListener(this)
     return true
     }
-/*
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-if (p0 != null){
-    searchDatabase(p0)
-}
-        return true
-    }
 
-    override fun onQueryTextChange(p0: String?): Boolean {
-        if (p0 != null){
-            searchDatabase(p0)
-        }
-        return true
-    }*/
 private fun searchDatabase(query :String){
     val searchQuery= "%$query%"
     stationList.clear()
