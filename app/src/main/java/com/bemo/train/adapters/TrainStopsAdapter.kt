@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bemo.medicalservices.adapters.StationAdapter
 import com.bemo.train.R
 import com.bemo.train.Entities.Station
+import com.bemo.train.Entities.Stops
 import com.bemo.train.Entities.Train
 
 
-class TrainAdapter(val context:Context,val trainList:ArrayList<Train>)
-    : RecyclerView.Adapter<TrainAdapter.RegistrationViewHolder>() {
+class TrainStopsAdapter(val context:Context,val stopsList:ArrayList<Stops>)
+    : RecyclerView.Adapter<TrainStopsAdapter.RegistrationViewHolder>() {
     private lateinit var onItemClick: onItemClickListener
     interface onItemClickListener{
         fun onItemClick(pos:Int)
@@ -24,27 +25,32 @@ class TrainAdapter(val context:Context,val trainList:ArrayList<Train>)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegistrationViewHolder {
 
-        val view :View =LayoutInflater.from(context).inflate(R.layout.train_list_item,parent,false)
+        val view :View =LayoutInflater.from(context).inflate(R.layout.train_stop_item,parent,false)
         return RegistrationViewHolder(view,onItemClick)
     }
 
     override fun onBindViewHolder(holder: RegistrationViewHolder, position: Int) {
-        val currentTrain = trainList[position]
-       holder.trainNumber.text = currentTrain.number
-        holder.startingStation.text = "Starting from :"+currentTrain.startStation+"  "+currentTrain.startTime
-        holder.arrivingStation.text = "destination :"+currentTrain.arriveStation+"  "+currentTrain.arriveTime
+        val currentStop = stopsList[position]
+        holder.stationName.text = currentStop.stationName
+        holder.fClassCost.text = currentStop.first_class_cost
+        if ( currentStop.second_class_cost != "n" ) {
+            holder.sClassCost.text = currentStop.second_class_cost
+        }else{
+            holder.sClassCost.text = ""
+        }
+        holder.time.text = "time: "+currentStop.time
 
     }
 
     override fun getItemCount(): Int {
-        return trainList.size
+        return stopsList.size
     }
     class RegistrationViewHolder(item: View,listener: onItemClickListener) :RecyclerView.ViewHolder(item){
 
-        val trainNumber = item.findViewById<TextView>(R.id.train_number_text)
-        val startingStation = item.findViewById<TextView>(R.id.starting_station)
-        val arrivingStation = item.findViewById<TextView>(R.id.arriving_station)
-
+        val stationName = item.findViewById<TextView>(R.id.st_name)
+        val fClassCost = item.findViewById<TextView>(R.id.first_class_cost)
+        val sClassCost = item.findViewById<TextView>(R.id.second_class_cost)
+        val time = item.findViewById<TextView>(R.id.s_time)
 
         init {
             itemView.setOnClickListener {

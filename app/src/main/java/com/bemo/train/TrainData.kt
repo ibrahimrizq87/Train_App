@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.bemo.train.Database.AppDatabase
+import com.bemo.train.Database.ViewModel
 import com.bemo.train.Entities.Station
 import com.bemo.train.Entities.Stops
 import com.bemo.train.Entities.Train
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class TrainData : AppCompatActivity() {
     private lateinit var appDatabase: AppDatabase
@@ -54,25 +53,31 @@ class TrainData : AppCompatActivity() {
             val station8 = Station("damnhor")
             val station9 = Station("bany swaf")
 
-            val train = Train("163","assuit","cairo","12:15 am","10:00 pm")
-            val train2 = Train("164","cairo","alex","1:15 am","12:00 pm")
-            val train3 = Train("185","sohag","cairo","2:15 am","1:00 am")
-            val train4 = Train("2010","minia","cairo","5:15 am","2:00 am")
-            val train5 = Train("998","aswan","cairo","6:15 am","10:00 am")
-            val train6 = Train("505","assui","alex","9:15 am","10:00 am")
-            val train7 = Train("6060","assuit","cairo","11:15 am","10:00 am")
-            val train8 = Train("70","alex","cairo","12:15 pm","10:00 pm")
-            val train9 = Train("8090","cairo","assuit","2:15 pm","10:00 pm")
+            val train = Train("163","assuit","cairo","12:15 am","10:00 pm","VIP")
+            val train2 = Train("164","cairo","alex","1:15 am","12:00 pm","VIP")
+            val train3 = Train("185","sohag","cairo","2:15 am","1:00 am","VIP")
+            val train4 = Train("2010","minia","cairo","5:15 am","2:00 am","VIP")
+            val train5 = Train("998","aswan","cairo","6:15 am","10:00 am","VIP")
+            val train6 = Train("505","assui","alex","9:15 am","10:00 am","VIP")
+            val train7 = Train("6060","assuit","cairo","11:15 am","10:00 am","VIP")
+            val train8 = Train("70","alex","cairo","12:15 pm","10:00 pm","VIP")
+            val train9 = Train("8090","cairo","assuit","2:15 pm","10:00 pm","VIP")
 
-            val stop = Stops("163","cairo","12:15 am")
-            val stop2 = Stops("164","cairo","12:15 am")
-            val stop3 = Stops("185","cairo","12:15 am")
-            val stop4 = Stops("2010","alex","12:15 am")
-            val stop5 = Stops("998","alex","12:15 am")
-            val stop6 = Stops("505","assuit","12:15 am")
-            val stop7 = Stops("6060","minia","12:15 am")
-            val stop8 = Stops("70","assuit","12:15 am")
-            val stop9 = Stops("8090","minia","12:15 am")
+            val stop11 = Stops("163","cairo","12:15 am","20","45")
+            val stop22 = Stops("163","assuit","12:15 am","20","45")
+            val stop33 = Stops("163","alex","12:15 am","20","45")
+            val stop44 = Stops("163","minia","12:15 am","20","45")
+            val stop55 = Stops("163","bany swaf","12:15 am","20","45")
+            val stop66 = Stops("163","damnhor","12:15 am","20","45")
+
+            val stop2 = Stops("164","cairo","12:15 am","20","45")
+            val stop3 = Stops("185","cairo","12:15 am","20","45")
+            val stop4 = Stops("2010","alex","12:15 am","20","45")
+            val stop5 = Stops("998","alex","12:15 am","20","45")
+            val stop6 = Stops("505","assuit","12:15 am","20","45")
+            val stop7 = Stops("6060","minia","12:15 am","20","45")
+            val stop8 = Stops("70","assuit","12:15 am","20","45")
+            val stop9 = Stops("8090","minia","12:15 am","20","45")
 
 
 
@@ -100,12 +105,18 @@ class TrainData : AppCompatActivity() {
 
 
 
-            mViewModel.addStops(stop)
+            mViewModel.addStops(stop11)
             mViewModel.addStops(stop2)
             mViewModel.addStops(stop3)
             mViewModel.addStops(stop4)
             mViewModel.addStops(stop5)
             mViewModel.addStops(stop6)
+            mViewModel.addStops(stop22)
+            mViewModel.addStops(stop33)
+            mViewModel.addStops(stop44)
+            mViewModel.addStops(stop55)
+            mViewModel.addStops(stop66)
+
             mViewModel.addStops(stop7)
             mViewModel.addStops(stop8)
             mViewModel.addStops(stop9)

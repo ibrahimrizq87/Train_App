@@ -1,4 +1,4 @@
-package com.bemo.train
+package com.bemo.train.Database
 
 import android.content.Context
 import androidx.room.Database
@@ -15,7 +15,7 @@ import com.bemo.train.Entities.Train
     Station::class
 ], version = 1)
 abstract class AppDatabase :RoomDatabase(){
-    abstract fun trainDao():TrainDao
+    abstract fun trainDao(): TrainDao
 //     abstract val trainDao:TrainDao
     companion object {
         @Volatile

@@ -1,5 +1,6 @@
 package com.bemo.train
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,8 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bemo.medicalservices.adapters.StationAdapter
-import com.bemo.train.Entities.Station
+import com.bemo.train.Database.AppDatabase
+import com.bemo.train.Database.ViewModel
 import com.bemo.train.Entities.Train
 import com.bemo.train.adapters.TrainAdapter
 
@@ -20,16 +21,14 @@ class SearchByNumber : AppCompatActivity() , SearchView.OnQueryTextListener{
     private lateinit var appDatabase: AppDatabase
     private lateinit var trainRecyclerView: RecyclerView
     private lateinit var trainList: ArrayList<Train>
-    lateinit var  trains: List<Train>
 
     private lateinit var mViewModel: ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_by_number)
 
-        trains=ArrayList()
         setContentView(R.layout.activity_search_by_location)
-        appDatabase=AppDatabase.getInstance(this)
+        appDatabase= AppDatabase.getInstance(this)
         trainRecyclerView = findViewById(R.id.stations_recyclerview)
 
         trainList = ArrayList()
@@ -43,7 +42,13 @@ class SearchByNumber : AppCompatActivity() , SearchView.OnQueryTextListener{
 
         adapter.setOnItemClickListener(object : TrainAdapter.onItemClickListener{
             override fun onItemClick(pos: Int) {
-                Toast.makeText(this@SearchByNumber,trainList[pos].number, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@SearchByNumber,trainList[pos].number, Toast.LENGTH_SHORT).show()
+                val intent =  Intent(this@SearchByNumber, TrainInformation::class.java).also {
+                    it.putExtra("number",trainList[pos].number)
+                    it.putExtra("type",trainList[pos].trainType)
+
+                }
+                startActivity(intent)
             }
 
         })

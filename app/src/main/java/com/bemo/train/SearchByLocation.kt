@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bemo.medicalservices.adapters.StationAdapter
+import com.bemo.train.Database.AppDatabase
+import com.bemo.train.Database.ViewModel
 import com.bemo.train.Entities.Station
 
 class SearchByLocation : AppCompatActivity(), SearchView.OnQueryTextListener{
@@ -25,7 +27,7 @@ class SearchByLocation : AppCompatActivity(), SearchView.OnQueryTextListener{
 
        // stations=ArrayList()
         setContentView(R.layout.activity_search_by_location)
-        appDatabase=AppDatabase.getInstance(this)
+        appDatabase= AppDatabase.getInstance(this)
         stationRecyclerView = findViewById(R.id.stations_recyclerview)
 
         stationList = ArrayList()

@@ -1,4 +1,4 @@
-package com.bemo.train
+package com.bemo.train.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -36,6 +36,14 @@ interface TrainDao {
 
     @Query("SELECT * FROM Station WHERE stationName LIKE :station ")
      fun findStationByName(station:String ):LiveData<List<Station>>
+
+    @Query("SELECT * FROM Stops WHERE stationName LIKE :station ")
+    fun findStopsByStationName(station:String ):LiveData<List<Stops>>
+
+    @Query("SELECT * FROM Stops WHERE number LIKE :number ")
+    fun findStopsByTrainNumber(number:String ):LiveData<List<Stops>>
+
+
 
     @Delete
     suspend fun delete(train: Train)

@@ -1,4 +1,4 @@
-package com.bemo.train
+package com.bemo.train.Database
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -14,7 +14,7 @@ class ViewModel(application: Application):AndroidViewModel(application) {
       val readAllStationData:LiveData<List<Station>>
     val readAllTrainData:LiveData<List<Train>>
 
-    private  val repository:Repository
+    private  val repository: Repository
     init {
         val databaseDao= AppDatabase.getInstance(application).trainDao()
         repository = Repository(databaseDao)
@@ -29,6 +29,15 @@ class ViewModel(application: Application):AndroidViewModel(application) {
     fun getTrainByNumber(number:String):LiveData<List<Train>>{
         return repository.findTrainByNumber(number)
     }
+    fun getStopsByTrainNumber(number:String):LiveData<List<Stops>>{
+        return repository.findStopsByTrainNumber(number)
+    }
+    fun getStopsByStationName(station:String):LiveData<List<Stops>>{
+        return repository.findStopsByStationName(station)
+    }
+
+
+
     fun addStations(station: Station){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addStation(station)

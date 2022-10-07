@@ -12,4 +12,5 @@ data class Train (
     val arriveStation:String,
     val startTime:String,
     val arriveTime:String
+    ,val trainType:String
 )

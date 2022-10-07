@@ -1,6 +1,7 @@
-package com.bemo.train
+package com.bemo.train.Database
 
 import androidx.lifecycle.LiveData
+import com.bemo.train.Database.TrainDao
 import com.bemo.train.Entities.Station
 import com.bemo.train.Entities.Stops
 import com.bemo.train.Entities.Train
@@ -16,6 +17,12 @@ class Repository(private val databaseDao: TrainDao) {
     }
     fun findTrainByNumber (number:String): LiveData<List<Train>> {
         return databaseDao.findByNumber(number)
+    }
+    fun findStopsByTrainNumber (number:String): LiveData<List<Stops>> {
+        return databaseDao.findStopsByTrainNumber(number)
+    }
+    fun findStopsByStationName (station:String): LiveData<List<Stops>> {
+        return databaseDao.findStopsByStationName(station)
     }
 
 
