@@ -1,10 +1,11 @@
-package com.bemo.train
+package com.bemo.train.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,13 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.bemo.medicalservices.adapters.StationAdapter
 import com.bemo.train.Database.AppDatabase
 import com.bemo.train.Database.ViewModel
-import com.bemo.train.Entities.Station
 import com.bemo.train.Entities.Stops
-import com.bemo.train.Entities.Train
-import com.bemo.train.adapters.TrainAdapter
+import com.bemo.train.R
 import com.bemo.train.adapters.TrainStopsAdapter
 import com.bemo.train.adapters.imageAdapter
 import java.lang.Math.abs
@@ -40,27 +38,24 @@ class TrainInformation : AppCompatActivity() {
     private lateinit var handler: Handler
     private lateinit var viewPager2: ViewPager2
     private lateinit var imageList: ArrayList<Int>
+    private lateinit var number:String
+    private lateinit var type:String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_train_information)
 
-        appDatabase= AppDatabase.getInstance(this)
         trainStopsRecyclerView = findViewById(R.id.train_stations)
-       val number=intent.getStringExtra("number").toString()
-        val type=intent.getStringExtra("type").toString()
+        number=intent.getStringExtra("number").toString()
+        type=intent.getStringExtra("type").toString()
 
-
-
-        stopsList = ArrayList()
-        stopAdapter = TrainStopsAdapter(this,stopsList)
-        trainStopsRecyclerView.layoutManager = LinearLayoutManager(this)
-        trainStopsRecyclerView.adapter = stopAdapter
-
-        mViewModel= ViewModelProvider(this).get(ViewModel::class.java)
-        getStopsData(number)
 
         init()
+
+        getStopsData(number)
+
         setUpTransformer()
+
         viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -112,6 +107,15 @@ val r= 1- abs(position)
 
     }
     private fun init(){
+        appDatabase= AppDatabase.getInstance(this)
+
+        stopsList = ArrayList()
+        stopAdapter = TrainStopsAdapter(this,stopsList)
+        trainStopsRecyclerView.layoutManager = LinearLayoutManager(this)
+        trainStopsRecyclerView.adapter = stopAdapter
+
+        mViewModel= ViewModelProvider(this).get(ViewModel::class.java)
+
         viewPager2 =findViewById(R.id.viewPager2)
         handler= Handler(Looper.myLooper()!!)
         imageList= ArrayList()
@@ -129,6 +133,25 @@ val r= 1- abs(position)
         viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
 
+    fun track(view: View) {
+        val intent =  Intent(this, TrackingActivity::class.java).also {
+    it.putExtra("number",number)
+         //   it.putExtra("type",type)
+        }
+        startActivity(intent)
+    }
+    private fun vipTrain(){
+
+    }
+    private fun sleepingTrain(){
+
+    }
+    private fun russianTrain(){
+
+    }
+    private fun thirdTrain(){
+
+    }
 
 
 }

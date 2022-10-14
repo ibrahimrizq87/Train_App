@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "422230280869",
+    "project_id": "train-d854f",
+    "storage_bucket": "train-d854f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422230280869:android:018a68b9efff66f78c5b4c",
+        "android_client_info": {
+          "package_name": "com.bemo.train"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422230280869-2h584qlc71of2s0ij0b67s0im1u933hr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTZ2xqEIf5frw65lw3UXNde0RJJOeE2ec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422230280869-2h584qlc71of2s0ij0b67s0im1u933hr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

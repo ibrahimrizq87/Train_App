@@ -1,4 +1,4 @@
-package com.bemo.train
+package com.bemo.train.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.bemo.medicalservices.adapters.StationAdapter
 import com.bemo.train.Database.AppDatabase
 import com.bemo.train.Database.ViewModel
 import com.bemo.train.Entities.Station
+import com.bemo.train.R
 
 class SearchByLocation : AppCompatActivity(), SearchView.OnQueryTextListener{
     private lateinit var adapter: StationAdapter

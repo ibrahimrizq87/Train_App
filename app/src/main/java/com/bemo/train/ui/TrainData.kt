@@ -1,4 +1,4 @@
-package com.bemo.train
+package com.bemo.train.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.bemo.train.Database.ViewModel
 import com.bemo.train.Entities.Station
 import com.bemo.train.Entities.Stops
 import com.bemo.train.Entities.Train
+import com.bemo.train.R
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

@@ -1,9 +1,10 @@
-package com.bemo.train
+package com.bemo.train.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.bemo.train.R
 
 class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +20,8 @@ class Home : AppCompatActivity() {
 
 
     fun enterData(view: View) {
-        startActivity(Intent(this,TrainData::class.java))
+        startActivity(Intent(this, TrainData::class.java))
     }
-    fun searchByStation(view: View) {startActivity(Intent(this,SearchByLocation::class.java))}
-    fun searchByNumber(view: View) {startActivity(Intent(this,SearchByNumber::class.java))}
+    fun searchByStation(view: View) {startActivity(Intent(this, SearchByLocation::class.java))}
+    fun searchByNumber(view: View) {startActivity(Intent(this, SearchByNumber::class.java))}
 }

@@ -1,10 +1,9 @@
-package com.bemo.train
+package com.bemo.train.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bemo.train.Database.AppDatabase
 import com.bemo.train.Database.ViewModel
 import com.bemo.train.Entities.Train
+import com.bemo.train.R
 import com.bemo.train.adapters.TrainAdapter
 
 class SearchByNumber : AppCompatActivity() , SearchView.OnQueryTextListener{

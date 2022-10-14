@@ -1,10 +1,10 @@
-package com.bemo.train
+package com.bemo.train.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
+import com.bemo.train.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 private fun intent(){
-    startActivity(Intent(this,Home::class.java))
+    startActivity(Intent(this, Home::class.java))
     finish()
 }
 
