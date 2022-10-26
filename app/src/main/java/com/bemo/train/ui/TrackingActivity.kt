@@ -64,6 +64,10 @@ class TrackingActivity : AppCompatActivity() {
         trainNumber=intent.getStringExtra("number").toString()
         getStopsData(trainNumber)
 
+
+        send.setOnClickListener {
+addTrainMessage(message.text.toString(),trainNumber,sampleDateFormat.format(calendar.time))
+        }
   passengerAdapter.setOnItemClickListener(object : PassengerTrackingAdapter.onItemClickListener{
       override fun onItemClick(pos: Int) {
 
@@ -93,4 +97,17 @@ class TrackingActivity : AppCompatActivity() {
                 Toast.makeText(this,it.toString(), Toast.LENGTH_LONG).show()
             }
     }
+
+    private fun addTrainMessage( message:String,trainNumber:String,time:String){
+        database.child(trainNumber).child("passengers chat").push().setValue(Message(message,time,trainNumber,""))
+            .addOnSuccessListener {
+
+                Toast.makeText(this,"message pushed", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                Toast.makeText(this,it.toString(), Toast.LENGTH_LONG).show()
+            }
+    }
+
+
+
 }
